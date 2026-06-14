@@ -23,9 +23,9 @@ Resultados shell_sort(T v[], int n){
         for (int i = gap; i < n; i++) {
             
             aux = v[i];
+            shell.movimentacoes++;
             j = i;
 
-            //while ((j >= gap) && ( v[j-gap] > aux )) {
             while(true){
                 if(j >= gap){
                     shell.comparacoes++;
@@ -41,7 +41,8 @@ Resultados shell_sort(T v[], int n){
                 }
             }
 
-            v[j] = aux; //conta como movimentação por si só? acho que não
+            v[j] = aux;
+            shell.movimentacoes++;
         }
     }
 
@@ -59,14 +60,17 @@ void merging(T v[], int ini, int meio, int fim, T vAux[], Resultados &merge){
             if(dir >= fim){
                 mantem = true;
             }
-            else if(v[esq] < v[dir]){ //tentando o minimo de comparações entre chaves
-                merge.comparacoes++;
-                mantem = true;
+            else{ 
+                merge.comparacoes++; // contando explicitamente comparações entre chaves
+                if(v[esq] < v[dir]){ //tentando o minimo de comparações entre chaves
+                    mantem = true;
+                }
             }
         }
         if(mantem){
             vAux[i] = v[esq];
             esq++;
+            merge.movimentacoes++;
         } else {
             vAux[i] = v[dir];
             dir++;
@@ -75,6 +79,7 @@ void merging(T v[], int ini, int meio, int fim, T vAux[], Resultados &merge){
     }
     for(int i = ini; i < fim; i++){
         v[i] = vAux[i];
+        merge.movimentacoes++;
     }
 }
 
@@ -111,23 +116,26 @@ Resultados heap_sort(T v[], int n){
         if(i > 0){
             i--;
             aux = v[i];
+            heap.movimentacoes++;
         } else {
             n--;
             if(n <= 0) return heap;
             aux = v[n];
+            heap.movimentacoes++;
             v[n] = v[0];
+            heap.movimentacoes++;
         }
         pai = i;
         filho = i*2 + 1;
         while(filho < n){
             if( (filho+1) < n ){
+                heap.comparacoes++;
                 if(v[filho+1] > v[filho]){
-                    filho++;
-                    heap.comparacoes++;
+                    filho++;                    
                 }
             }
+            heap.comparacoes++;
             if(v[filho] > aux){
-                heap.comparacoes++;
                 v[pai] = v[filho];
                 pai = filho;
                 filho = pai*2 +1;
@@ -137,6 +145,7 @@ Resultados heap_sort(T v[], int n){
             }
         }
         v[pai] = aux;
+        heap.movimentacoes++;
     }
 
     return heap;
