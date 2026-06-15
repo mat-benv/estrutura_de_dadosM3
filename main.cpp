@@ -7,7 +7,7 @@ using namespace std;
 
 int main(){
 
-    int n = 10000;
+    int n;
     
     int list0[10000], list1[10000], list2[10000], list3[10000];
 
@@ -32,20 +32,31 @@ int main(){
         }while(n < 1 || n > 10000);
         do{
             cout << "1 = Crescente\n2 = Decrescente\n3 = Aleatório\n";
-            cin >> f;
+            //cin >> f;
+            f = 2;
             f--;
         }while(f < 0 || f > 2);
 
         get_data(list0, n, arquivo, f);
+
+        for(int i = 0; i < n; i++){
+            cout << list0[i] << ' ';
+        }
+        cout << endl;
     
         copy_list(list0, list1, n);
+
+        cout << endl;
         Resultados shell = shell_sort(list1, n);
+        show(list1, n, shell);
 
         copy_list(list0, list2, n);
         Resultados merge = merge_sort(list2, n);
+        show(list2, n, merge);
 
         copy_list(list0, list3, n);
         Resultados heap = heap_sort(list3, n);
+        show(list3, n, heap);
 
         csv.open("tabela.csv", ios::app);
 

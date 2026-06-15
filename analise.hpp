@@ -49,7 +49,7 @@ void get_data(int list[], int n, std::string filename, int mode = ASCENDING){
 
 void copy_list(int list1[], int list2[], int n){
     for(int i = 0; i < n; i++){
-        list1[i] = list2[i];
+        list2[i] = list1[i];
     }
 }
 
