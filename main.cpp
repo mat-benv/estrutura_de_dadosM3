@@ -18,7 +18,7 @@ int main(){
     char opt;
 
     cout << "Digite o nome do arquivo: ";
-    getline(cin, arquivo);
+    //getline(cin, arquivo);
         
     ofstream csv("tabela.csv");
     csv << "Quantidade de dados,C(n),,,M(n),," << endl
