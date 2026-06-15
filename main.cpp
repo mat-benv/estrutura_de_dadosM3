@@ -11,7 +11,7 @@ int main(){
     
     int list0[10000], list1[10000], list2[10000], list3[10000];
 
-    string arquivo = "./dados.txt";
+    string arquivo = "../dados.txt";
 
     int f;
 

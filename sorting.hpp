@@ -16,7 +16,8 @@ template <typename T>
 Resultados shell_sort(T v[], int n){
     Resultados shell{SHELL, 0, 0};
 
-    int aux, j;
+    T aux, 
+    int j;
 
     for (int gap = n / 2; gap > 0; gap /= 2) {
 
